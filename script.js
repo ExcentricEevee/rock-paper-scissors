@@ -1,12 +1,14 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function game () {
     let computerSelection;
     for (let i = 0; i < 5; i++) {
+        playerSelection = getPlayerChoice();
         computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection))
     }
 }
-
-const playerSelection = "rock";
 
 function playRound(playerSelection, computerSelection) {
     //make it case-insensitive
@@ -16,15 +18,23 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "scissors" ||
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissors" && computerSelection === "paper") {
-            return `You win! ${playerSelection} beats ${computerSelection}`;
+            playerScore++;
+            return `You win! ${playerSelection} beats ${computerSelection}.
+                    The score is now ${playerScore} to ${computerScore}`;
     } 
     else if (playerSelection === "rock" && computerSelection === "paper" ||
                  playerSelection === "paper" && computerSelection === "scissors" ||
                 playerSelection === "scissors" && computerSelection === "rock") {
-            return `You lose! ${computerSelection} beats ${playerSelection}`;
+            computerScore++;
+            return `You lose! ${computerSelection} beats ${playerSelection}
+                    The score is now ${playerScore} to ${computerScore}`;
     } else {
         return `It's a draw! It was ${playerSelection} and ${computerSelection}`;
     }
+}
+
+function getPlayerChoice() {
+    return prompt("Rock, Paper, or Scissors?", "Scissors");
 }
 
 function getComputerChoice() {
