@@ -8,6 +8,8 @@ function game () {
         computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection))
     }
+    console.log("The game is over, which means...")
+    console.log(checkForWin());
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -19,17 +21,27 @@ function playRound(playerSelection, computerSelection) {
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissors" && computerSelection === "paper") {
             playerScore++;
-            return `You win! ${playerSelection} beats ${computerSelection}.
+            return `You win the round!! ${playerSelection} beats ${computerSelection}.
                     The score is now ${playerScore} to ${computerScore}`;
     } 
     else if (playerSelection === "rock" && computerSelection === "paper" ||
                  playerSelection === "paper" && computerSelection === "scissors" ||
                 playerSelection === "scissors" && computerSelection === "rock") {
             computerScore++;
-            return `You lose! ${computerSelection} beats ${playerSelection}
+            return `You lose the round! ${computerSelection} beats ${playerSelection}
                     The score is now ${playerScore} to ${computerScore}`;
     } else {
         return `It's a draw! It was ${playerSelection} and ${computerSelection}`;
+    }
+}
+
+function checkForWin() {
+    if (playerScore > computerScore) {
+        return "You win the game! Thanks for playing!";
+    } else if (computerScore > playerScore) {
+        return "I win the game! Yeehaw!";
+    }   else {
+        return "There's no winner?! Let's play again!";
     }
 }
 
