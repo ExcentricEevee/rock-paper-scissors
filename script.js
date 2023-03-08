@@ -1,7 +1,7 @@
 let playerScore = 0;
 let computerScore = 0;
 
-function game () {
+/* function game () {
     let computerSelection;
     for (let i = 0; i < 5; i++) {
         playerSelection = getPlayerChoice();
@@ -10,7 +10,7 @@ function game () {
     }
     console.log("The game is over, which means...")
     console.log(checkForWin());
-}
+} */
 
 function playRound(playerSelection, computerSelection) {
     //make it case-insensitive
