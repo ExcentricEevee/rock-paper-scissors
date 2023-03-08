@@ -12,9 +12,11 @@ let computerScore = 0;
     console.log(checkForWin());
 } */
 
-btn = document.querySelector('#rock');
-btn.addEventListener('click', () => { 
-    console.log( playRound(btn.textContent, getComputerChoice() )); 
+buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log( playRound(button.textContent, getComputerChoice() )); 
+    });
 });
 
 function playRound(playerSelection, computerSelection) {
@@ -26,7 +28,7 @@ function playRound(playerSelection, computerSelection) {
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissors" && computerSelection === "paper") {
             playerScore++;
-            return `You win the round!! ${playerSelection} beats ${computerSelection}.
+            return `You win the round! ${playerSelection} beats ${computerSelection}.
                     The score is now ${playerScore} to ${computerScore}`;
     } 
     else if (playerSelection === "rock" && computerSelection === "paper" ||
