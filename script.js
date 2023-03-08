@@ -1,44 +1,33 @@
 let playerScore = 0;
 let computerScore = 0;
 
-/* function game () {
-    let computerSelection;
-    for (let i = 0; i < 5; i++) {
-        playerSelection = getPlayerChoice();
-        computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection))
-    }
-    console.log("The game is over, which means...")
-    console.log(checkForWin());
-} */
-
+div = document.querySelector('div.results');
 buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log( playRound(button.textContent, getComputerChoice() )); 
+        playRound(button.textContent, getComputerChoice()); 
     });
 });
 
 function playRound(playerSelection, computerSelection) {
-    //make it case-insensitive
+    // make it case-insensitive
     playerSelection = playerSelection.toLowerCase();
 
-    // this doesn't really look pretty
+    // refresh display at new round
+    div.textContent = "";
+    div.textContent += `You chose ${playerSelection}, and I chose ${computerSelection}...`;
     if (playerSelection === "rock" && computerSelection === "scissors" ||
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissors" && computerSelection === "paper") {
             playerScore++;
-            return `You win the round! ${playerSelection} beats ${computerSelection}.
-                    The score is now ${playerScore} to ${computerScore}`;
-    } 
-    else if (playerSelection === "rock" && computerSelection === "paper" ||
+            div.textContent += `so you win! The score is now ${playerScore} to ${computerScore}`;
+    } else if (playerSelection === "rock" && computerSelection === "paper" ||
                  playerSelection === "paper" && computerSelection === "scissors" ||
                 playerSelection === "scissors" && computerSelection === "rock") {
-            computerScore++;
-            return `You lose the round! ${computerSelection} beats ${playerSelection}
-                    The score is now ${playerScore} to ${computerScore}`;
+                    computerScore++;
+                    div.textContent += `so I win! The score is now ${playerScore} to ${computerScore}`;
     } else {
-        return `It's a draw! It was ${playerSelection} and ${computerSelection}`;
+        div.textContent += `it's a draw! The score is still ${playerScore} to ${computerScore}`;
     }
 }
 
