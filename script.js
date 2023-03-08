@@ -12,6 +12,11 @@ let computerScore = 0;
     console.log(checkForWin());
 } */
 
+btn = document.querySelector('#rock');
+btn.addEventListener('click', () => { 
+    console.log( playRound(btn.textContent, getComputerChoice() )); 
+});
+
 function playRound(playerSelection, computerSelection) {
     //make it case-insensitive
     playerSelection = playerSelection.toLowerCase();
