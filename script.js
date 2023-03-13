@@ -8,6 +8,11 @@ winnerDiv = document.querySelector('div.winner');
 buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
+        if (playerScore === 5 || computerScore === 5 ) {
+            playerScore = 0;
+            computerScore = 0;
+        }
+        
         playRound(button.textContent, getComputerChoice()); 
     });
 });
