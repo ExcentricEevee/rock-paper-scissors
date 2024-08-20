@@ -10,20 +10,26 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    return prompt('Rock, Paper, or Scissors?');
+function playRound(humanChoice, computerChoice) {
+    // make humanChoice case-insensitive
+    humanChoice = humanChoice.toLowerCase();
+
+    if (humanChoice === 'rock' && computerChoice === 'scissors' ||
+        humanChoice === 'paper' && computerChoice === 'rock' ||
+        humanChoice === 'scissors' && computerChoice === 'paper') {
+        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        humanScore++;
+    } else if (computerChoice === 'rock' && humanChoice === 'scissors' ||
+        computerChoice === 'paper' && humanChoice === 'rock' ||
+        computerChoice === 'scissors' && humanChoice === 'paper') {
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
+    } else {
+        console.log(`It\'s a tie! It was ${humanChoice} and ${computerChoice}`);
+    }
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-
-    for(let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
-
+function checkWinCondition() {
     if (humanScore > computerScore) {
         console.log("You won the whole game!");
     } else if (computerScore < humanScore) {
@@ -32,23 +38,15 @@ function playGame() {
         console.log('It ends in a tie!')
     }
     console.log(`Your score: ${humanScore} | CPU score: ${computerScore}`)
-
-    function playRound(humanChoice, computerChoice) {
-        // make humanChoice case-insensitive
-        humanChoice = humanChoice.toLowerCase();
-    
-        if (humanChoice === 'rock' && computerChoice === 'scissors' ||
-            humanChoice === 'paper' && computerChoice === 'rock' ||
-            humanChoice === 'scissors' && computerChoice === 'paper') {
-            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-            humanScore++;
-        } else if (computerChoice === 'rock' && humanChoice === 'scissors' ||
-            computerChoice === 'paper' && humanChoice === 'rock' ||
-            computerChoice === 'scissors' && humanChoice === 'paper') {
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-            computerScore++;
-        } else {
-            console.log(`It\'s a tie! It was ${humanChoice} and ${computerChoice}`);
-        }
-    }
 }
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const humanChoice = button.textContent;
+        playRound(humanChoice, getComputerChoice());
+    });
+});
+
+let humanScore = 0;
+let computerScore = 0;
