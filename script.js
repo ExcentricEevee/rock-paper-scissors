@@ -16,6 +16,13 @@ function playRound(humanChoice, computerChoice) {
     // make humanChoice case-insensitive
     humanChoice = humanChoice.toLowerCase();
 
+    if (isNewGame()) {
+        humanScore = 0;
+        computerScore = 0;
+        const winner = document.querySelector('.winner');
+        winner.textContent = '';
+    }
+
     const results = document.querySelector('.results');
     if (humanChoice === 'rock' && computerChoice === 'scissors' ||
         humanChoice === 'paper' && computerChoice === 'rock' ||
@@ -44,6 +51,10 @@ function checkWinCondition() {
     const winner = document.querySelector('.winner');
     if (humanScore >= 5) winner.textContent = "You won!"
     else if (computerScore >= 5) winner.textContent = "The CPU won!"
+}
+
+function isNewGame() {
+    return (humanScore >= 5 || computerScore >= 5);
 }
 
 const buttons = document.querySelectorAll('button');
