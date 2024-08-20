@@ -1,0 +1,15 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 6px 24px;
+    margin: 0 12px;
+    font-weight: 700;
+    border: 1px solid #6a6a6a;
+    border-radius: 8px;
+}
