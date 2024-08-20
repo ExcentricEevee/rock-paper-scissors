@@ -10,34 +10,40 @@ function getComputerChoice() {
     }
 }
 
+let humanScore = 0;
+let computerScore = 0;
 function playRound(humanChoice, computerChoice) {
     // make humanChoice case-insensitive
     humanChoice = humanChoice.toLowerCase();
 
+    const results = document.querySelector('.results');
     if (humanChoice === 'rock' && computerChoice === 'scissors' ||
         humanChoice === 'paper' && computerChoice === 'rock' ||
         humanChoice === 'scissors' && computerChoice === 'paper') {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        results.textContent = (`You win! ${humanChoice} beats ${computerChoice}`);
         humanScore++;
     } else if (computerChoice === 'rock' && humanChoice === 'scissors' ||
         computerChoice === 'paper' && humanChoice === 'rock' ||
         computerChoice === 'scissors' && humanChoice === 'paper') {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        results.textContent = (`You lose! ${computerChoice} beats ${humanChoice}`);
         computerScore++;
     } else {
-        console.log(`It\'s a tie! It was ${humanChoice} and ${computerChoice}`);
+        results.textContent = (`It\'s a tie! It was ${humanChoice} and ${computerChoice}`);
     }
+
+    displayScore();
+    checkWinCondition();
+}
+
+function displayScore() {
+    const score = document.querySelector('.score');
+    score.textContent = `You: ${humanScore} | CPU: ${computerScore}`;
 }
 
 function checkWinCondition() {
-    if (humanScore > computerScore) {
-        console.log("You won the whole game!");
-    } else if (computerScore < humanScore) {
-        console.log('The computer wins this time!')
-    } else {
-        console.log('It ends in a tie!')
-    }
-    console.log(`Your score: ${humanScore} | CPU score: ${computerScore}`)
+    const winner = document.querySelector('.winner');
+    if (humanScore >= 5) winner.textContent = "You won!"
+    else if (computerScore >= 5) winner.textContent = "The CPU won!"
 }
 
 const buttons = document.querySelectorAll('button');
@@ -47,6 +53,3 @@ buttons.forEach((button) => {
         playRound(humanChoice, getComputerChoice());
     });
 });
-
-let humanScore = 0;
-let computerScore = 0;
